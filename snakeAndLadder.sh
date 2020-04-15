@@ -1,6 +1,5 @@
 #!/bin/bash -x
 echo "Welcome to Snake and Ladder Game"
-START_POS=0
 WIN_POS=100
 position=0
 rollsDie=$(( (RANDOM%6) +1 ))
@@ -12,8 +11,7 @@ function  checkForOption()
      	option=$(( (RANDOM%3) +1 ))
      	case $option in
      	1)echo $position            ;;
-     	2)position=$(( $position + $rollsDie ))
-	 ((position++)) ;;
+     	2)position=$(( $position + $rollsDie )) ;;
       	3)position=$(( $position - $rollsDie ))
          if [ $position -lt 0 ]
          then
