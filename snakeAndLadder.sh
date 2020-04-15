@@ -1,17 +1,26 @@
 #!/bin/bash -x
 echo "Welcome to Snake and Ladder Game"
 START_POS=0
+WIN_POS=100
 position=0
 rollsDie=$(( (RANDOM%6) +1 ))
+
 function  checkForOption()
 {
-     option=$(( (RANDOM%3) +1 ))
-     case $option in
-     1)echo "No play stays in same positon"
-       positon=0    ;;
-     2)position=$(( $position + $rollsDie )) ;;
-     3)position=$(( $rollDie - $position ))  ;;
-     esac
+     while [ $position -le $WIN_POS ]
+     do
+     	option=$(( (RANDOM%3) +1 ))
+     	case $option in
+     	1)echo $position            ;;
+     	2)position=$(( $position + $rollsDie ))
+	 ((position++)) ;;
+      	3)position=$(( $position - $rollsDie ))
+         if [ $position -lt 0 ]
+         then
+              position=0
+         fi          ;;
+     	esac
+     done
 }
 checkPosition="$( checkForOption )"
 
