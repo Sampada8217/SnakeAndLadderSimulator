@@ -2,14 +2,15 @@
 echo "Welcome to Snake and Ladder Game"
 WIN_POS=100
 position=0
-rollsDie=$(( (RANDOM%6) +1 ))
-
+count=0
 function  checkForOption()
 {
      while [ $position -ne $WIN_POS ]
      do
-     	option=$(( (RANDOM%3) +1 ))
-     	case $option in
+        rollsDie=$(( (RANDOM%6) +1 ))
+        ((count++))
+  	option=$(( (RANDOM%3) +1 ))
+ 	case $option in
      	1)echo $position                ;;
      	2)position=$(( $position + $rollsDie ))
           if [ $position -gt 100 ] 
@@ -24,6 +25,7 @@ function  checkForOption()
          fi          ;;
      	esac
      done
+echo $count
 }
 checkPosition="$( checkForOption )"
 
